@@ -4,10 +4,7 @@ import 'package:http/http.dart' as http;
 import 'extensions.dart';
 
 class MegaSDKAuth {
-  const MegaSDKAuth({
-    required this.address,
-    required AuthVariables auth,
-  }) : __auth = auth;
+  const MegaSDKAuth(this.address, this.__auth);
   final String address;
   final AuthVariables __auth;
 
@@ -59,7 +56,7 @@ class MegaSDKAuth {
     String refreshToken,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('http://localhost:8080/auth/reload-token'),
+      Uri.parse('$address/auth/reload-token'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
         "refresh_token": refreshToken,

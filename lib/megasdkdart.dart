@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library megasdkdart;
 
-export 'src/megasdkauth.dart';
+export 'src/base.dart';
 
 // TODO: Export any libraries intended for clients of this package.

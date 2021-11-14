@@ -4,16 +4,16 @@ import 'package:http/http.dart' as http;
 import 'extensions.dart';
 
 class MegaSDKUser {
-  const MegaSDKUser({
-    required this.address,
-    required AuthVariables auth,
-  }) : __auth = auth;
+  const MegaSDKUser(
+    this.address,
+    this.__auth,
+  );
   final String address;
   final AuthVariables __auth;
 
   Future<Map<String, dynamic>> get([int? id]) async {
     http.Response data = await http.get(
-      Uri.parse(id != null ? '$address/user/$id' : '$address/user/'),
+      Uri.parse(id != null ? '$address/users/$id' : '$address/users/'),
       headers: {
         "Content-Type": 'application/json',
         "Authorization": __auth.authToken,
@@ -31,7 +31,7 @@ class MegaSDKUser {
     String? password,
     int? color,
   }) async {
-    http.Response data = await http.patch(Uri.parse('$address/user/'),
+    http.Response data = await http.patch(Uri.parse('$address/users/'),
         headers: {
           "Content-Type": 'application/json',
           "Authorization": __auth.authToken,
@@ -52,15 +52,15 @@ class MegaSDKUser {
     return jsonDecode(utf8.decode(data.bodyBytes));
   }
 
-  Future<Map<String, dynamic>> bond(int id) async {
+  Future<void> bond(int id) async {
     http.Response data = await http.get(
-      Uri.parse('$address/user/$id/bond'),
+      Uri.parse('$address/users/$id/bond'),
       headers: {
         "Content-Type": 'application/json',
         "Authorization": __auth.authToken,
       },
     );
     checkHttpStatusCode(data.statusCode);
-    return jsonDecode(utf8.decode(data.bodyBytes));
+    return;
   }
 }
