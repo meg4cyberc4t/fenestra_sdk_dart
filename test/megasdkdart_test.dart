@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:megasdkdart/src/megasdkdart_base.dart';
 import 'package:test/test.dart';
 
@@ -7,14 +5,21 @@ void main() async {
   group('Test sdk', () {
     final sdk = MegaSDK();
     Map data;
+    late String refreshToken;
+
+    late int anotherUserId;
+    late MegaSDK anotherSdk = MegaSDK();
+
     test('sdk.auth.signUp', () async {
       data = await sdk.auth.signUp('first', 'last', 'login', 'password', 0);
       expect(data['id'] is int, true);
       expect(data['auth_token'] is String, true);
       expect(data['refresh_token'] is String, true);
+
+      anotherUserId = (await anotherSdk.auth
+          .signUp('firstName', 'lastName', 'login2', 'password', 0))['id'];
     });
 
-    late String refreshToken;
     test('sdk.auth.signIn', () async {
       data = await sdk.auth.signIn('login', 'password');
       refreshToken = data['refresh_token'];
@@ -70,28 +75,20 @@ void main() async {
       expect(data['color'], 1);
     });
 
-    late int anotherUserId;
-    late MegaSDK anotherSdk;
-    setUp(() async {
-      anotherSdk = MegaSDK();
-      anotherUserId = (await anotherSdk.auth
-          .signUp('firstName', 'lastName', 'login2', 'password', 0))['id'];
-    });
-
     test('sdk.user.bond', () async {
-      sdk.user.bond(anotherUserId);
+      await sdk.user.bond(anotherUserId);
+      data = await sdk.user.get();
+      expect(data['subscriptions'].contains(anotherUserId), true);
       data = await sdk.user.get(anotherUserId);
       expect(data['subscribers'].contains(selectId), true);
-      sdk.user.get();
-      expect(data['subscriptions'].contains(anotherUserId), true);
 
-      anotherSdk.user.bond(selectId);
+      await anotherSdk.user.bond(selectId);
       data = await sdk.user.get(anotherUserId);
       expect(data['subscribers'].contains(selectId), false);
       expect(data['subscriptions'].contains(anotherUserId), false);
-      expect(data['colleagues'].contains(anotherUserId), true);
+      expect(data['colleagues'].contains(selectId), true);
 
-      sdk.user.get();
+      data = await sdk.user.get();
       expect(data['subscribers'].contains(selectId), false);
       expect(data['subscriptions'].contains(anotherUserId), false);
       expect(data['colleagues'].contains(anotherUserId), true);

@@ -59,7 +59,7 @@ class MegaSDKAuth {
     String refreshToken,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('http://localhost:8080/auth/reload-token'),
+      Uri.parse('$address/auth/reload-token'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
         "refresh_token": refreshToken,

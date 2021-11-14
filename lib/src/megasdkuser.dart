@@ -52,7 +52,7 @@ class MegaSDKUser {
     return jsonDecode(utf8.decode(data.bodyBytes));
   }
 
-  Future<Map<String, dynamic>> bond(int id) async {
+  Future<void> bond(int id) async {
     http.Response data = await http.get(
       Uri.parse('$address/user/$id/bond'),
       headers: {
@@ -61,6 +61,6 @@ class MegaSDKUser {
       },
     );
     checkHttpStatusCode(data.statusCode);
-    return jsonDecode(utf8.decode(data.bodyBytes));
+    return;
   }
 }
