@@ -4,10 +4,7 @@ import 'package:http/http.dart' as http;
 import 'extensions.dart';
 
 class MegaSDKAuth {
-  const MegaSDKAuth({
-    required this.address,
-    required AuthVariables auth,
-  }) : __auth = auth;
+  const MegaSDKAuth(this.address, this.__auth);
   final String address;
   final AuthVariables __auth;
 
