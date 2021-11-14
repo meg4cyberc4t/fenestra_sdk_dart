@@ -1,6 +1,8 @@
 // import 'package:megasdkdart/megasdkdart.dart';
 
-// void main() {
-//   var awesome = Awesome();
-//   print('awesome: ${awesome.isAwesome}');
+// void main() async {
+//   var sdk = MegaSDK();
+//   var data = await sdk.auth.signIn('login', 'password');
+//   var data1 = await sdk.notify.folders.getAll();
+//   print(data1);
 // }

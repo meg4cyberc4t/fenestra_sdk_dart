@@ -143,5 +143,109 @@ void main() async {
           .exclude(folderId: folderId, excludeUserId: anotherUserId);
       expect((await anotherSdk.notify.folders.getAll()).isEmpty, true);
     });
+
+    MegaSDK sdk1 = MegaSDK();
+    MegaSDK sdk2 = MegaSDK();
+    test('Special folder test', () async {
+      int firstId =
+          (await sdk1.auth.signUp('firstName', 'lastName', '1', '1', 0))['id'];
+      int secondId = (await sdk2.auth
+          .signUp('firstName2', 'lastName2', '2', '2', 0))['id'];
+      int folderId = (await sdk2.notify.folders.create(title: 'title'))['id'];
+      await sdk2.notify.folders
+          .invite(folderId: folderId, inviteUserId: firstId);
+    });
+
+    late int notificationId;
+    MegaSDK lastSdk = MegaSDK();
+    test('sdk.notify.notifications.create', () async {
+      await lastSdk.auth.signUp('aaa', 'aaa', 'aaa', 'aaa', 123);
+      data = await lastSdk.notify.notifications.create(
+        title: 'title',
+        deadline: DateTime.now().millisecondsSinceEpoch,
+      );
+      notificationId = data['id'];
+    });
+
+    test('sdk.notify.notifications.get', () async {
+      data = await lastSdk.notify.notifications.get(notificationId);
+      expect(data['id'] is int, true);
+      expect(data['title'] is String, true);
+      if (data['description'] != null) {
+        expect(data['description'] is String, true);
+      }
+      expect(data['owner'] is int, true);
+      if (data['deadline'] != null) {
+        expect(data['deadline'] is int, true);
+      }
+      if (data['repeat'] != null) {
+        expect(data['repeat'] is int, true);
+        expect(0 <= data['repeat'] && data['repeat'] <= 127, true);
+      }
+      if (data['folder'] != null) {
+        expect(data['folder'] is int, true);
+      }
+      expect(data['invited'] is List, true);
+    });
+
+    test('sdk.notify.notifications.edit', () async {
+      data = await lastSdk.notify.folders.create(title: 'folder aaa');
+      folderId = data['id'];
+      int newDeadline = DateTime.now().millisecondsSinceEpoch;
+      await lastSdk.notify.notifications.edit(
+        id: notificationId,
+        description: 'descdesc',
+        deadline: newDeadline,
+        folder: folderId,
+      );
+      data = await lastSdk.notify.notifications.get(notificationId);
+      expect(data['deadline'], newDeadline);
+      expect(data['description'], 'descdesc');
+    });
+
+    test('sdk.notify.notifications.getAll', () async {
+      var listData = await lastSdk.notify.notifications.getAll();
+      expect(listData.isNotEmpty, true);
+      data = listData[0];
+      expect(data['id'] is int, true);
+      expect(data['title'] is String, true);
+      if (data['description'] != null) {
+        expect(data['description'] is String, true);
+      }
+      expect(data['owner'] is int, true);
+      if (data['deadline'] != null) {
+        expect(data['deadline'] is int, true);
+      }
+      if (data['repeat'] != null) {
+        expect(data['repeat'] is int, true);
+        expect(0 <= data['repeat'] && data['repeat'] <= 127, true);
+      }
+      if (data['folder'] != null) {
+        expect(data['folder'] is int, true);
+      }
+      expect(data['invited'] is List, true);
+    });
+    test('sdk.notify.notifications.getByFolder', () async {
+      var listData = await lastSdk.notify.notifications.getByFolder(folderId);
+      expect(listData.isNotEmpty, true);
+      data = listData[0];
+      expect(data['id'] is int, true);
+      expect(data['title'] is String, true);
+      if (data['description'] != null) {
+        expect(data['description'] is String, true);
+      }
+      expect(data['owner'] is int, true);
+      if (data['deadline'] != null) {
+        expect(data['deadline'] is int, true);
+      }
+      if (data['repeat'] != null) {
+        expect(data['repeat'] is int, true);
+        expect(0 <= data['repeat'] && data['repeat'] <= 127, true);
+      }
+      if (data['folder'] != null) {
+        expect(data['folder'] is int, true);
+      }
+      expect(data['invited'] is List, true);
+    });
   });
 }
