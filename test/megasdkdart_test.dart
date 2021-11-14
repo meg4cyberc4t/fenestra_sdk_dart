@@ -2,7 +2,7 @@ import 'package:megasdkdart/src/base.dart';
 import 'package:test/test.dart';
 
 void main() async {
-  group('Test sdk', () {
+  group('Test ->', () {
     final sdk = MegaSDK();
     Map data;
     late String refreshToken;
