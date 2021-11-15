@@ -149,8 +149,7 @@ void main() async {
     test('Special folder test', () async {
       int firstId =
           (await sdk1.auth.signUp('firstName', 'lastName', '1', '1', 0))['id'];
-      int secondId = (await sdk2.auth
-          .signUp('firstName2', 'lastName2', '2', '2', 0))['id'];
+      await sdk2.auth.signUp('firstName2', 'lastName2', '2', '2', 0);
       int folderId = (await sdk2.notify.folders.create(title: 'title'))['id'];
       await sdk2.notify.folders
           .invite(folderId: folderId, inviteUserId: firstId);
