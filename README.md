@@ -1,7 +1,7 @@
 # megasdkdart
  The official sdk for the user-friendly API of Mega services in the Dart language.
 
-### example:
+### Example:
 ```dart
 import 'package:megasdkdart/megasdkdart.dart';
 
@@ -46,3 +46,6 @@ void main() async {
   // Enjoy your use :)
 }
 ```
+
+### Server:
+https://github.com/meg4cyberc4t/mega_api/blob/main/README.md
