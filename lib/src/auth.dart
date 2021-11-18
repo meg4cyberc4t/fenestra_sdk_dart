@@ -70,15 +70,28 @@ class MegaSDKAuth {
   }
 
   Future<bool> isCorrectLogin(
-    String refreshToken,
+    String login,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('$address/auth/reloadToken'),
+      Uri.parse('$address/auth/checkUniqueLogin'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
-        "refresh_token": refreshToken,
+        "login": login,
       }),
     );
     return data.statusCode == 202;
+  }
+
+  Future<int> isCorrectLoginWithStatusCode(
+    String login,
+  ) async {
+    http.Response data = await http.post(
+      Uri.parse('$address/auth/checkUniqueLogin'),
+      headers: {"Content-Type": 'application/json'},
+      body: jsonEncode({
+        "login": login,
+      }),
+    );
+    return data.statusCode;
   }
 }
