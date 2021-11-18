@@ -47,5 +47,10 @@ void main() async {
 }
 ```
 
+###### Also you can use another server! 
+```dart
+  final sdk = MegaSDK("http://123.123.321.321:8080");
+```
+
 ### Server:
 https://github.com/meg4cyberc4t/mega_api/blob/main/README.md
