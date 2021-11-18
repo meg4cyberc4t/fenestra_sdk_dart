@@ -16,7 +16,7 @@ class MegaSDKAuth {
     int color,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('$address/auth/sign-up'),
+      Uri.parse('$address/auth/signUp'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
         "first_name": firstName,
@@ -38,7 +38,7 @@ class MegaSDKAuth {
     String password,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('$address/auth/sign-in'),
+      Uri.parse('$address/auth/signIn'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
         "login": login,
@@ -56,7 +56,7 @@ class MegaSDKAuth {
     String refreshToken,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('$address/auth/reload-token'),
+      Uri.parse('$address/auth/reloadToken'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
         "refresh_token": refreshToken,
