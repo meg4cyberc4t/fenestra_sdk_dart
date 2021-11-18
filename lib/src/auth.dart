@@ -86,7 +86,7 @@ class MegaSDKAuth {
     String login,
   ) async {
     http.Response data = await http.post(
-      Uri.parse('$address/auth/checkUniqueLogin'),
+      Uri.parse('$address/auth/checkCorrectLogin'),
       headers: {"Content-Type": 'application/json'},
       body: jsonEncode({
         "login": login,
