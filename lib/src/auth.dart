@@ -4,9 +4,9 @@ import 'package:http/http.dart' as http;
 import 'extensions.dart';
 
 class MegaSDKAuth {
-  const MegaSDKAuth(this.address, this.__auth);
+  const MegaSDKAuth(this.address, this.auth);
   final String address;
-  final AuthVariables __auth;
+  final AuthVariables auth;
 
   Future<Map<String, dynamic>> signUp(
     String firstName,
@@ -28,8 +28,8 @@ class MegaSDKAuth {
     );
     checkHttpStatusCode(data.statusCode);
     Map<String, dynamic> output = jsonDecode(utf8.decode(data.bodyBytes));
-    __auth.authToken = output['auth_token'];
-    __auth.refreshToken = output['refresh_token'];
+    auth.authToken = output['auth_token'];
+    auth.refreshToken = output['refresh_token'];
     return output;
   }
 
@@ -47,8 +47,8 @@ class MegaSDKAuth {
     );
     checkHttpStatusCode(data.statusCode);
     Map<String, dynamic> output = jsonDecode(utf8.decode(data.bodyBytes));
-    __auth.authToken = output['auth_token'];
-    __auth.refreshToken = output['refresh_token'];
+    auth.authToken = output['auth_token'];
+    auth.refreshToken = output['refresh_token'];
     return output;
   }
 
@@ -64,8 +64,8 @@ class MegaSDKAuth {
     );
     checkHttpStatusCode(data.statusCode);
     Map<String, dynamic> output = jsonDecode(utf8.decode(data.bodyBytes));
-    __auth.authToken = output['auth_token'];
-    __auth.refreshToken = output['refresh_token'];
+    auth.authToken = output['auth_token'];
+    auth.refreshToken = output['refresh_token'];
     return output;
   }
 

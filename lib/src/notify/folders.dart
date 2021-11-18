@@ -4,9 +4,9 @@ import 'package:megasdkdart/src/extensions.dart';
 import 'package:http/http.dart' as http;
 
 class MegaSDKFolders {
-  const MegaSDKFolders(this.__auth);
+  const MegaSDKFolders(this.address, this.__auth);
   final AuthVariables __auth;
-  static const address = "http://185.12.95.163";
+  final String address;
 
   Future<Map<String, dynamic>> get(int id) async {
     http.Response data = await http.get(

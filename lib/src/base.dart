@@ -6,9 +6,9 @@ import 'user.dart';
 
 class MegaSDK {
   const MegaSDK();
-  static const address = "";
-  static const AuthVariables authVariables = AuthVariables('', '');
-  MegaSDKAuth get auth => const MegaSDKAuth('123', authVariables);
-  MegaSDKUser get users => const MegaSDKUser('123', authVariables);
-  MegaSDKNotify get notify => const MegaSDKNotify('123', authVariables);
+  static const address = "http://185.12.95.163";
+  static AuthVariables authVariables = AuthVariables('', '');
+  MegaSDKAuth get auth => MegaSDKAuth(address, authVariables);
+  MegaSDKUser get users => MegaSDKUser(address, authVariables);
+  MegaSDKNotify get notify => MegaSDKNotify(address, authVariables);
 }
