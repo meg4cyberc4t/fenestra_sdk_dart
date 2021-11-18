@@ -5,15 +5,10 @@ import 'auth.dart';
 import 'user.dart';
 
 class MegaSDK {
-  MegaSDK([String? address]) {
-    address ??= 'http://localhost:8080';
-    AuthVariables __auth = AuthVariables('', '');
-    auth = MegaSDKAuth(address, __auth);
-    users = MegaSDKUser(address, __auth);
-    notify = MegaSDKNotify(address, __auth);
-  }
-  late String address;
-  late MegaSDKAuth auth;
-  late MegaSDKUser users;
-  late MegaSDKNotify notify;
+  const MegaSDK();
+  static const address = "";
+  static const AuthVariables authVariables = AuthVariables('', '');
+  MegaSDKAuth get auth => const MegaSDKAuth('123', authVariables);
+  MegaSDKUser get users => const MegaSDKUser('123', authVariables);
+  MegaSDKNotify get notify => const MegaSDKNotify('123', authVariables);
 }

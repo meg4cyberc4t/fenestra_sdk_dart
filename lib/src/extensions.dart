@@ -17,7 +17,7 @@ void checkHttpStatusCode(int statusCode) {
 }
 
 class AuthVariables {
-  AuthVariables(this.authToken, this.refreshToken);
-  String authToken;
-  String refreshToken;
+  const AuthVariables(this.authToken, this.refreshToken);
+  final String authToken;
+  final String refreshToken;
 }

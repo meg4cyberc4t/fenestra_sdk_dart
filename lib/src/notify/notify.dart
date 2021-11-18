@@ -3,13 +3,8 @@ import 'package:megasdkdart/src/notify/folders.dart';
 import 'package:megasdkdart/src/notify/notifications.dart';
 
 class MegaSDKNotify {
-  MegaSDKNotify(this.address, this.__auth) {
-    folders = MegaSDKFolders(address, __auth);
-    notifications = MegaSDKNotifications(address, __auth);
-  }
-
-  final String address;
+  const MegaSDKNotify(this.__auth);
   final AuthVariables __auth;
-  late MegaSDKFolders folders;
-  late MegaSDKNotifications notifications;
+  get folders => MegaSDKFolders(__auth);
+  get notifications => MegaSDKNotifications(__auth);
 }

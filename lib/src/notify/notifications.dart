@@ -4,9 +4,9 @@ import 'package:megasdkdart/src/extensions.dart';
 import 'package:http/http.dart' as http;
 
 class MegaSDKNotifications {
-  MegaSDKNotifications(this.address, this.__auth);
-  final String address;
+  MegaSDKNotifications(this.__auth);
   final AuthVariables __auth;
+  static const address = "http://185.12.95.163";
 
   Future<Map<String, dynamic>> get(int id) async {
     http.Response data = await http.get(
