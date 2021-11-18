@@ -68,4 +68,17 @@ class MegaSDKAuth {
     __auth.refreshToken = output['refresh_token'];
     return output;
   }
+
+  Future<bool> isCorrectLogin(
+    String refreshToken,
+  ) async {
+    http.Response data = await http.post(
+      Uri.parse('$address/auth/reloadToken'),
+      headers: {"Content-Type": 'application/json'},
+      body: jsonEncode({
+        "refresh_token": refreshToken,
+      }),
+    );
+    return data.statusCode == 202;
+  }
 }
