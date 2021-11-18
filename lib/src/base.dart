@@ -6,7 +6,7 @@ import 'user.dart';
 
 class MegaSDK {
   MegaSDK([String? address]) {
-    address ??= 'http://localhost:8080';
+    address ??= 'http://185.12.95.163/';
     AuthVariables __auth = AuthVariables('', '');
     auth = MegaSDKAuth(address, __auth);
     users = MegaSDKUser(address, __auth);
