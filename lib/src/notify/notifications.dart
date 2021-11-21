@@ -1,10 +1,11 @@
 import 'dart:convert';
 
+import 'package:megasdkdart/src/auth_variables.dart';
 import 'package:megasdkdart/src/extensions.dart';
 import 'package:http/http.dart' as http;
 
 class MegaSDKNotifications {
-  MegaSDKNotifications(this.address, this.__auth);
+  const MegaSDKNotifications(this.address, this.__auth);
   final AuthVariables __auth;
   final String address;
 

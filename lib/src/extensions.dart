@@ -15,9 +15,3 @@ void checkHttpStatusCode(int statusCode) {
       throw AssertionError('Unexpected error code: $statusCode.');
   }
 }
-
-class AuthVariables {
-  AuthVariables(this.authToken, this.refreshToken);
-  String authToken;
-  String refreshToken;
-}

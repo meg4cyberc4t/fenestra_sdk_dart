@@ -1,4 +1,4 @@
-import 'package:megasdkdart/src/extensions.dart';
+import 'package:megasdkdart/src/auth_variables.dart';
 import 'package:megasdkdart/src/notify/folders.dart';
 import 'package:megasdkdart/src/notify/notifications.dart';
 

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:megasdkdart/src/auth_variables.dart';
 import 'package:megasdkdart/src/extensions.dart';
 import 'package:http/http.dart' as http;
 
