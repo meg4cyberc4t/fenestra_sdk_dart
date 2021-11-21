@@ -4,26 +4,31 @@
 ### Example:
 ```dart
 import 'package:megasdkdart/megasdkdart.dart';
+import 'package:megasdkdart/src/auth_variables.dart';
 
 void main() async {
   // Initializing the sdk. You can work from multiple accounts,
   // then create multiple instances in different variables
-  final sdk = MegaSDK();
+  final MegaSDK user = MegaSDK(
+    address: "http://123.456.789.101:8080",
+    authVariables: AuthVariables('', ''),
+  );
 
   // Be sure to log in to the system
-  await sdk.auth.signIn('login', 'password');
+  await user.auth.signIn('login', 'password');
 
   // You can get information on the account using
-  await sdk.users.get();
+  await user.users.get();
+
   //Or pass the person's id to it
-  await sdk.users.get(1);
+  await user.users.get(1);
 
   // To work with notify methods, use
-  await sdk.notify.notifications.create(title: 'title');
-  await sdk.notify.notifications.edit(id: 1, title: '2');
-  await sdk.notify.notifications.delete(1);
-  await sdk.notify.folders.getAll();
-  await sdk.notify.folders.get(1);
+  await user.notify.notifications.create(title: 'title');
+  await user.notify.notifications.edit(id: 1, title: '2');
+  await user.notify.notifications.delete(1);
+  await user.notify.folders.getAll();
+  await user.notify.folders.get(1);
 
   // As well as many other methods that you need to read
   // about in the instructions of this library.
@@ -33,7 +38,7 @@ void main() async {
   // Please note that all functions are asynchronous
 
   // And also note that some functions return values. You can get them like this
-  var data = await sdk.auth.signIn('login', 'password');
+  Map<String, dynamic> data = await user.auth.signIn('login', 'password');
   print(data);
   //   {
   //     "id": 1253705143,
@@ -45,11 +50,7 @@ void main() async {
 
   // Enjoy your use :)
 }
-```
 
-###### Also you can use another server! 
-```dart
-  final sdk = MegaSDK("http://123.123.321.321:8080");
 ```
 
 ### Server:
