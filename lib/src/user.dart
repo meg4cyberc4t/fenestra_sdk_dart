@@ -53,9 +53,9 @@ class MegaSDKUser {
     return jsonDecode(utf8.decode(data.bodyBytes));
   }
 
-  Future<void> bond(int id) async {
+  Future<void> relation(int id) async {
     http.Response data = await http.get(
-      Uri.parse('$address/users/$id/bond'),
+      Uri.parse('$address/users/$id/relation'),
       headers: {
         "Content-Type": 'application/json',
         "Authorization": __auth.authToken,

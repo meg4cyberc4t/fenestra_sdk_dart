@@ -5,7 +5,6 @@ import 'auth.dart';
 import 'user.dart';
 
 class MegaSDK {
-  //  "http://185.12.95.163";
   const MegaSDK({required this.address, required this.authVariables});
   final String address;
   final AuthVariables authVariables;

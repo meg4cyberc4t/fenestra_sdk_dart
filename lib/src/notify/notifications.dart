@@ -109,12 +109,12 @@ class MegaSDKNotifications {
     return jsonDecode(utf8.decode(data.bodyBytes));
   }
 
-  Future<void> invite({
+  Future<void> relation({
     required int notificationId,
     required int inviteUserId,
   }) async {
     http.Response data = await http.post(
-        Uri.parse('$address/notify/notifications/$notificationId/invite'),
+        Uri.parse('$address/notify/notifications/$notificationId/relation'),
         headers: {
           "Content-Type": 'application/json',
           "Authorization": __auth.authToken,

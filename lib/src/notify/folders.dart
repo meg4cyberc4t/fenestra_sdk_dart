@@ -82,34 +82,18 @@ class MegaSDKFolders {
     return jsonDecode(utf8.decode(data.bodyBytes));
   }
 
-  Future<void> invite({
+  Future<void> relation({
     required int folderId,
-    required int inviteUserId,
+    required int userId,
   }) async {
     http.Response data =
-        await http.post(Uri.parse('$address/notify/folders/$folderId/invite'),
+        await http.post(Uri.parse('$address/notify/folders/$folderId/relation'),
             headers: {
               "Content-Type": 'application/json',
               "Authorization": __auth.authToken,
             },
             body: jsonEncode({
-              "id": inviteUserId,
-            }));
-    checkHttpStatusCode(data.statusCode);
-  }
-
-  Future<void> exclude({
-    required int folderId,
-    required int excludeUserId,
-  }) async {
-    http.Response data =
-        await http.post(Uri.parse('$address/notify/folders/$folderId/exclude'),
-            headers: {
-              "Content-Type": 'application/json',
-              "Authorization": __auth.authToken,
-            },
-            body: jsonEncode({
-              "id": excludeUserId,
+              "id": userId,
             }));
     checkHttpStatusCode(data.statusCode);
   }
