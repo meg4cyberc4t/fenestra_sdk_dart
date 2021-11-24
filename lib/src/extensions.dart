@@ -7,8 +7,7 @@ void checkHttpStatusCode(int statusCode) {
     case 401:
       throw AssertionError('Authorization failed.');
     case 403:
-      throw AssertionError(
-          'The method is not implemented. Hint: check if you are doing everything correctly...');
+      throw AssertionError('Check your values...');
     case 404:
       throw AssertionError("Not found method!");
     case 422:
