@@ -7,11 +7,11 @@ void checkHttpStatusCode(int statusCode) {
     case 401:
       throw AssertionError('Authorization failed.');
     case 403:
-      throw AssertionError('Check your values...');
+      throw AssertionError('Incorrect values!');
     case 404:
       throw AssertionError("Not found method!");
     case 422:
-      throw AssertionError('The instance already exists.');
+      throw AssertionError('The instance already exists!');
     default:
       throw AssertionError('Unexpected error code: $statusCode.');
   }
