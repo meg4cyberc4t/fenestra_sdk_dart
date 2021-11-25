@@ -2,3 +2,4 @@ library megasdkdart;
 
 export 'src/base.dart';
 export 'src/auth_variables.dart';
+export 'src/error.dart';
