@@ -1,14 +1,14 @@
-import 'package:megasdkdart/src/auth_variables.dart';
-import 'package:megasdkdart/src/notify/notify.dart';
+import 'package:fenestra_sdk_dart/fenestra_sdk_dart.dart';
+import 'package:fenestra_sdk_dart/src/methods/notify/notify.dart';
 
-import 'auth.dart';
-import 'user.dart';
+import 'methods/auth.dart';
+import 'methods/user.dart';
 
-class MegaSDK {
-  const MegaSDK({required this.address, required this.authVariables});
+class FenestraSDK {
+  const FenestraSDK({required this.address, required this.authVariables});
   final String address;
   final AuthVariables authVariables;
-  MegaSDKAuth get auth => MegaSDKAuth(address, authVariables);
-  MegaSDKUser get users => MegaSDKUser(address, authVariables);
-  MegaSDKNotify get notify => MegaSDKNotify(address, authVariables);
+  FenestraSDKAuth get auth => FenestraSDKAuth(address, authVariables);
+  FenestraSDKUser get users => FenestraSDKUser(address, authVariables);
+  FenestraSDKNotify get notify => FenestraSDKNotify(address, authVariables);
 }

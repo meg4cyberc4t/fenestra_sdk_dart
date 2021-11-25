@@ -1,3 +1,5 @@
+import 'package:fenestra_sdk_dart/src/error.dart';
+
 void checkHttpStatusCode(int statusCode) {
   switch (statusCode) {
     case 200:
@@ -5,14 +7,14 @@ void checkHttpStatusCode(int statusCode) {
     case 201:
       return;
     case 401:
-      throw AssertionError('Authorization failed.');
+      throw FenestraAPIError('Authorization failed');
     case 403:
-      throw AssertionError('Incorrect values!');
+      throw FenestraAPIError('Incorrect values');
     case 404:
-      throw AssertionError("Not found method!");
+      throw FenestraAPIError('Not found method');
     case 422:
-      throw AssertionError('The instance already exists!');
+      throw FenestraAPIError('The instance already exists');
     default:
-      throw AssertionError('Unexpected error code: $statusCode.');
+      throw FenestraAPIError('Unexpected error code: $statusCode');
   }
 }

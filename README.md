@@ -1,17 +1,16 @@
-# megasdkdart
- The official sdk for the user-friendly API of Mega services in the Dart language.
+# fenestra_sdk_dart
+ The official sdk for the user-friendly API of Fenestra services in the Dart language.
 
 ### Example:
 ```dart
-import 'package:megasdkdart/megasdkdart.dart';
-import 'package:megasdkdart/src/auth_variables.dart';
+import 'package:fenestra_sdk_dart/fenestra_sdk_dart.dart';
 
 void main() async {
   // Initializing the sdk. You can work from multiple accounts,
   // then create multiple instances in different variables
-  final MegaSDK user = MegaSDK(
+  final FenestraSDK user = FenestraSDK(
     address: "http://123.456.789.101:8080",
-    authVariables: AuthVariables('', ''),
+    authVariables: AuthVariables(authToken: '', refreshToken: ''),
   );
 
   // Be sure to log in to the system
