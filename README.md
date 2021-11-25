@@ -53,4 +53,4 @@ void main() async {
 ```
 
 ### Server:
-https://github.com/meg4cyberc4t/mega_api/blob/main/README.md
+https://github.com/meg4cyberc4t/fenestra_api/
