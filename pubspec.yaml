@@ -1,6 +1,7 @@
 name: fenestra_sdk_dart
 description: Official sdk for fenestra_server.
 version: 1.0.0
+homepage: https://github.com/meg4cyberc4t/fenestra_sdk_dart
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
