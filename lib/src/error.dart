@@ -4,5 +4,5 @@ class FenestraAPIError extends Error {
   final String message;
 
   @override
-  String toString() => "Assertion failed";
+  String toString() => "FenestraAPIError: $message";
 }
