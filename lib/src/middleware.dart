@@ -2,9 +2,29 @@ import 'dart:convert';
 
 import 'package:fenestra_sdk_dart/src/auth_variables.dart';
 import 'package:fenestra_sdk_dart/src/error.dart';
-import 'package:fenestra_sdk_dart/src/extensions.dart';
 import 'package:fenestra_sdk_dart/src/http_api_type.dart';
 import 'package:http/http.dart' as http;
+
+void _checkHttpStatusCode(int statusCode) {
+  switch (statusCode) {
+    case 200:
+      return;
+    case 201:
+      return;
+    case 202:
+      return;
+    case 401:
+      throw FenestraAPIError('Authorization failed');
+    case 403:
+      throw FenestraAPIError('Incorrect values');
+    case 404:
+      throw FenestraAPIError('Not found method');
+    case 422:
+      throw FenestraAPIError('The instance already exists');
+    default:
+      throw FenestraAPIError('Unexpected error code: $statusCode');
+  }
+}
 
 Future<dynamic> middleware({
   required String serverAddress,
@@ -24,15 +44,16 @@ Future<dynamic> middleware({
       data = await http.post(uri, headers: headers, body: body);
       break;
     case HttpAPIType.delete:
-      data = await http.post(uri, headers: headers, body: body);
+      data = await http.delete(uri, headers: headers, body: body);
       break;
     case HttpAPIType.patch:
-      data = await http.post(uri, headers: headers, body: body);
+      data = await http.patch(uri, headers: headers, body: body);
       break;
     case HttpAPIType.put:
       data = await http.put(uri, headers: headers, body: body);
       break;
   }
+
   if (data.statusCode == 401) {
     http.Response data = await http.post(
         Uri.parse('$serverAddress/auth/reloadToken'),
@@ -41,7 +62,7 @@ Future<dynamic> middleware({
     if (data.statusCode == 401) {
       throw FenestraAPIError("Unauthorization");
     }
-    checkHttpStatusCode(data.statusCode);
+    _checkHttpStatusCode(data.statusCode);
     if (data.statusCode == 202) {
       return;
     }
@@ -56,6 +77,9 @@ Future<dynamic> middleware({
         body: body,
         authVariables: authVariables);
   }
-  checkHttpStatusCode(data.statusCode);
+  if (data.statusCode == 202) {
+    return;
+  }
+  _checkHttpStatusCode(data.statusCode);
   return jsonDecode(utf8.decode(data.bodyBytes));
 }
