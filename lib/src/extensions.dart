@@ -6,6 +6,8 @@ void checkHttpStatusCode(int statusCode) {
       return;
     case 201:
       return;
+    case 202:
+      return;
     case 401:
       throw FenestraAPIError('Authorization failed');
     case 403:
