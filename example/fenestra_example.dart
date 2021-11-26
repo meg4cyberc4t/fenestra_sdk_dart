@@ -8,7 +8,7 @@ void main() async {
     authVariables: AuthVariables.withSavedCallback(
       authToken: '',
       refreshToken: '',
-      savedCallback: () => print("SavedCallback!"),
+      savedCallback: (authToken, refreshToken) async => print("SavedCallback!"),
     ),
   );
 

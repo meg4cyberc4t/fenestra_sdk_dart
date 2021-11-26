@@ -11,16 +11,16 @@ class AuthVariables {
   AuthVariables.withSavedCallback(
       {this.authToken = '',
       this.refreshToken = '',
-      VoidCallback? savedCallback})
+      required Future<void> Function(String, String) savedCallback})
       : _savedCallback = savedCallback;
   @HiveField(0)
   String authToken;
   @HiveField(1)
   String refreshToken;
-  VoidCallback? _savedCallback;
+  Future<void> Function(String, String)? _savedCallback;
 
   void save() => (_savedCallback == null)
       ? throw FenestraAPIError(
           "AuthVariables savedCallback not does not initialize")
-      : _savedCallback!();
+      : _savedCallback!(authToken, refreshToken);
 }
