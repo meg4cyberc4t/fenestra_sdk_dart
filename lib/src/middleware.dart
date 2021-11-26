@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fenestra_sdk_dart/src/auth_variables.dart';
+import 'package:fenestra_sdk_dart/src/model/auth_variables.dart';
 import 'package:fenestra_sdk_dart/src/error.dart';
 import 'package:fenestra_sdk_dart/src/http_api_type.dart';
 import 'package:http/http.dart' as http;
