@@ -30,6 +30,7 @@ class FenestraSDKAuth {
         }));
     __auth.authToken = data['auth_token'];
     __auth.refreshToken = data['refresh_token'];
+    __auth.save();
     return data;
   }
 
@@ -49,6 +50,7 @@ class FenestraSDKAuth {
         }));
     __auth.authToken = data['auth_token'];
     __auth.refreshToken = data['refresh_token'];
+    __auth.save();
     return data;
   }
 
@@ -62,6 +64,7 @@ class FenestraSDKAuth {
         body: jsonEncode({"refresh_token": refreshToken}));
     __auth.authToken = data['auth_token'];
     __auth.refreshToken = data['refresh_token'];
+    __auth.save();
     return data;
   }
 
