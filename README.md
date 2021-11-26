@@ -10,11 +10,23 @@ void main() async {
   // then create multiple instances in different variables
   final FenestraSDK user = FenestraSDK(
     address: "http://123.456.789.101:8080",
-    authVariables: AuthVariables(authToken: '', refreshToken: ''),
+    authVariables: AuthVariables.withSavedCallback(
+      authToken: '',
+      refreshToken: '',
+      savedCallback: (authToken, refreshToken) async => print("SavedCallback!"),
+      // You can simply initialize the authorization token class
+      // (if you don't need to use them for a long time).
+      // But you can also use AuthVariables.withsavedcallback and pass
+      // an asynchronous function that will be executed every
+      //                                  time the tokens change!
+    ),
   );
 
   // Be sure to log in to the system
-  await user.auth.signIn('login', 'password');
+  Map<String, dynamic> data = await user.auth.signIn('login', 'password');
+
+  // Reload refreshToken (If auth_token expired)
+  await user.auth.reloadToken(data['refresh_token']);
 
   // You can get information on the account using
   await user.users.get();
@@ -37,14 +49,14 @@ void main() async {
   // Please note that all functions are asynchronous
 
   // And also note that some functions return values. You can get them like this
-  Map<String, dynamic> data = await user.auth.signIn('login', 'password');
-  print(data);
+  Map<String, dynamic> out = await user.auth.signIn('login', 'password');
+  print(out);
   //   {
   //     "id": 1253705143,
   //     "auth_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1MzcwN...",
   //     "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTI1..."
   // }
-  print(data['id']);
+  print(out['id']);
   // 1253705143
 
   // Enjoy your use :)
